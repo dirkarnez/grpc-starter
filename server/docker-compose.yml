@@ -1,0 +1,18 @@
+version: "2"
+services:
+  mariadb:
+    environment:
+      - MYSQL_ROOT_PASSWORD=123456
+    image: mariadb
+    ports:
+      - "3306:3306"
+  web:
+    build: .
+    volumes:
+      - ./src:/go/src/github.com/dirkarnez/mentor
+    ports:
+      - "8900:8900"
+    links:
+      - mariadb
+
+
